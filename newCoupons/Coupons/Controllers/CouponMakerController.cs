@@ -17,7 +17,7 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: CouponMaker
-        public ActionResult Index(string sortOrder, string searchString,string currentFilter, int? page, int? SelectedCouponMakers)
+        public ActionResult Index(string sortOrder, string searchString,string currentFilter, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -36,15 +36,6 @@ namespace Coupons.Controllers
             ViewBag.CurrentFilter = searchString;
             var couponMakers = from s in db.CouponMaker
                                select s;
-            var cm = db.CouponMaker.OrderBy(q => q.name).ToList();
-            ViewBag.SelectedCouponMakers = new SelectList(cm, "ID", "Name", SelectedCouponMakers);
-            int couponMakerID = SelectedCouponMakers.GetValueOrDefault();
-
-            IQueryable<CouponMaker> qcouponMaker = db.CouponMaker
-            .Where(c => !SelectedCouponMakers.HasValue || c.ID == couponMakerID)
-            .OrderBy(d => d.name);
-        //.Include(d => d);
-            var sql = qcouponMaker.ToString(); //added
             
             if (!String.IsNullOrEmpty(searchString))
             {

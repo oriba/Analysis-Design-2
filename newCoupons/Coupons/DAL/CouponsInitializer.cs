@@ -13,21 +13,21 @@ namespace Coupons.DAL
 
             var Category = new List<Category>
             {
-            new Category{categoryID="Food"},
-            new Category{categoryID="Entertainment"},
-            new Category{categoryID="HealthAndBeauty"},
-            new Category{categoryID="Apparel"},
-            new Category{categoryID="Electronics"}                        
+            new Category{ID="Food"},
+            new Category{ID="Entertainment"},
+            new Category{ID="HealthAndBeauty"},
+            new Category{ID="Apparel"},
+            new Category{ID="Electronics"}                        
             };
             Category.ForEach(s => context.Category.Add(s));
             context.SaveChanges();
 
             var Status = new List<Status>
             {
-            new Status{statusID="AwaitsApproval"},
-            new Status{statusID="Approved"},
-            new Status{statusID="Active"},
-            new Status{statusID="Inactive"}                       
+            new Status{ID="AwaitsApproval"},
+            new Status{ID="Approved"},
+            new Status{ID="Active"},
+            new Status{ID="Inactive"}                       
             };
 
             Status.ForEach(s => context.Status.Add(s));

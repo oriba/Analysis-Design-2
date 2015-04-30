@@ -7,6 +7,6 @@ namespace Coupons.Models
 {
     public class Status
     {
-        public string statusID { get; set;}
+        public string ID { get; set;}
     }
 }
