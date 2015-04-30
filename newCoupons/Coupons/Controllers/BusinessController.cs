@@ -16,12 +16,24 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Business
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, int? SelectedCategory, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CitySortParm = sortOrder == "City" ? "city_desc" : "City";
-            var businesses = from s in db.Business
-                           select s;
+
+            var categories = db.Category.OrderBy(q => q.ID).ToList();
+            ViewBag.SelectedCategory = new SelectList(categories, "ID", "category", SelectedCategory);
+            int categoryID = SelectedCategory.GetValueOrDefault();
+
+            IQueryable<Business> businesses = db.Business
+                .Where(c => !SelectedCategory.HasValue || c.categoryID == categoryID)
+                .OrderBy(d => d.name);
+            var sql = businesses.ToString();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                businesses = businesses.Where(s => s.city.Contains(searchString)
+                                       || s.address.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
@@ -37,6 +49,7 @@ namespace Coupons.Controllers
                     businesses = businesses.OrderBy(s => s.name);
                     break;
             }
+
             return View(businesses.ToList());
         }
 

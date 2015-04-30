@@ -17,32 +17,24 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: CouponMaker
-        public ActionResult Index(string sortOrder, string searchString,string currentFilter, int? page)
+        public ActionResult Index(string sortOrder, int? page, int? SelectedCategory)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
 
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+        //    var couponMakers = from s in db.CouponMaker
+        //                       select s;
+            var categories = db.Category.OrderBy(q => q.ID).ToList();
+            ViewBag.SelectedCategory = new SelectList(categories, "ID", "category", SelectedCategory);
+            int categoryID = SelectedCategory.GetValueOrDefault();
 
-            ViewBag.CurrentFilter = searchString;
-            var couponMakers = from s in db.CouponMaker
-                               select s;
+            IQueryable<CouponMaker> couponMakers = db.CouponMaker
+                .Where(c => !SelectedCategory.HasValue || c.business.categoryID == categoryID)
+                .OrderBy(d => d.name);
+            var sql = couponMakers.ToString();
             
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                couponMakers = couponMakers.Where(s => s.name.Contains(searchString)
-                                       || s.description.Contains(searchString));
-            }
-
             switch (sortOrder)
             {
                 case "name_desc":

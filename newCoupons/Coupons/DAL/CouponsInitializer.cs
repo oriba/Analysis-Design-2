@@ -13,21 +13,21 @@ namespace Coupons.DAL
 
             var Category = new List<Category>
             {
-            new Category{ID="Food"},
-            new Category{ID="Entertainment"},
-            new Category{ID="HealthAndBeauty"},
-            new Category{ID="Apparel"},
-            new Category{ID="Electronics"}                        
+            new Category{ID=1, category="food"},
+            new Category{ID=2,category="Entertainment"},
+            new Category{ID=3, category="HealthAndBeauty"},
+            new Category{ID=4, category="Apparel"},
+            new Category{ID=5, category="Electronics"}                        
             };
             Category.ForEach(s => context.Category.Add(s));
             context.SaveChanges();
 
             var Status = new List<Status>
             {
-            new Status{ID="AwaitsApproval"},
-            new Status{ID="Approved"},
-            new Status{ID="Active"},
-            new Status{ID="Inactive"}                       
+            new Status{ID=1, status="AwaitsApproval"},
+            new Status{ID=2, status="Approved"},
+            new Status{ID=3, status="Active"},
+            new Status{ID=4, status="Inactive"}                       
             };
 
             Status.ForEach(s => context.Status.Add(s));
@@ -61,7 +61,7 @@ namespace Coupons.DAL
             
             var Business = new List<Business>
             {
-            new Business{ID=1,name="mcDonalds",ownerID="333333333",categoryID="Food",description="hamburgers", address="rager 20 Beer-sheva",city="Beer-Sheva",moneyEarned=100}
+            new Business{ID=1,name="mcDonalds",ownerID="333333333",categoryID=1,description="hamburgers", address="rager 20 Beer-sheva",city="Beer-Sheva",moneyEarned=100}
             };
             Business.ForEach(s => context.Business.Add(s));
             context.SaveChanges();

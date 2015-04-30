@@ -11,11 +11,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "CouponMaker", FormMethod.Get))
+@using (Html.BeginForm()) //"Index", "CouponMaker", FormMethod.Get)
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        Select Category: @Html.DropDownList("SelectedCategory", "All")
+        <input type="submit" value="Filter" />
     </p>
 }
 <table class="table">

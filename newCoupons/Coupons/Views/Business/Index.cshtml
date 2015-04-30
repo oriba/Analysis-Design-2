@@ -9,10 +9,23 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Search By Category: @Html.DropDownList("SelectedCategory", "All")
+        <input type="submit" value="Search" />
+    </p>
+    <p>
+        Search By Location: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+
+    
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.category.ID)
+            Category
         </th>
         <th>
             Owner's name
@@ -37,10 +50,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.category.ID)
+            @Html.DisplayFor(modelItem => item.Category.category)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.owner.firstName)
+            @Html.DisplayFor(modelItem => item.Owner.firstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.name)
