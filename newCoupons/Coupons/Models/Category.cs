@@ -7,6 +7,6 @@ namespace Coupons.Models
 {
     public class Category
     {
-        public string category { get; set;}
+        public string categoryID { get; set;}
     }
 }

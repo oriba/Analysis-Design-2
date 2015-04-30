@@ -13,21 +13,21 @@ namespace Coupons.DAL
 
             var Category = new List<Category>
             {
-            new Category{category="Food"},
-            new Category{category="Entertainment"},
-            new Category{category="HealthAndBeauty"},
-            new Category{category="Apparel"},
-            new Category{category="Electronics"}                        
+            new Category{categoryID="Food"},
+            new Category{categoryID="Entertainment"},
+            new Category{categoryID="HealthAndBeauty"},
+            new Category{categoryID="Apparel"},
+            new Category{categoryID="Electronics"}                        
             };
             Category.ForEach(s => context.Category.Add(s));
             context.SaveChanges();
 
             var Status = new List<Status>
             {
-            new Status{status="AwaitsApproval"},
-            new Status{status="Approved"},
-            new Status{status="Active"},
-            new Status{status="Inactive"}                       
+            new Status{statusID="AwaitsApproval"},
+            new Status{statusID="Approved"},
+            new Status{statusID="Active"},
+            new Status{statusID="Inactive"}                       
             };
 
             Status.ForEach(s => context.Status.Add(s));
@@ -61,15 +61,15 @@ namespace Coupons.DAL
             
             var Business = new List<Business>
             {
-            new Business{ID=1,name="mcDonalds",ownerID="333333333",category=Coupons.Models.CategoryEnum.Food.ToString(),description="hamburgers", address="rager 20 Beer-sheva",city="Beer-Sheva",moneyEarned=100}
+            new Business{ID=1,name="mcDonalds",ownerID="333333333",categoryID="Food",description="hamburgers", address="rager 20 Beer-sheva",city="Beer-Sheva",moneyEarned=100}
             };
             Business.ForEach(s => context.Business.Add(s));
             context.SaveChanges();
 
             var CouponMaker = new List<CouponMaker>
             {
-            new CouponMaker{ID=1,name="mcCoupon",description="best price", originalPrice=50,couponPrice=25,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-04"),endDate=DateTime.Parse("2015-05-05"),quantity=0,maxQuantity=100,status=Coupons.Models.StatusEnum.Active},
-            new CouponMaker{ID=2,name="scCoupon",description="best price", originalPrice=40,couponPrice=10,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-05"),endDate=DateTime.Parse("2015-05-06"),quantity=0,maxQuantity=70,status=Coupons.Models.StatusEnum.Active}
+            new CouponMaker{ID=1,name="mcCoupon",description="best price", originalPrice=50,couponPrice=25,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-04"),endDate=DateTime.Parse("2015-05-05"),quantity=0,maxQuantity=100,statusID="Active"},
+            new CouponMaker{ID=2,name="scCoupon",description="best price", originalPrice=40,couponPrice=10,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-05"),endDate=DateTime.Parse("2015-05-06"),quantity=0,maxQuantity=70,statusID="Active"}
 
             };
             CouponMaker.ForEach(s => context.CouponMaker.Add(s));
