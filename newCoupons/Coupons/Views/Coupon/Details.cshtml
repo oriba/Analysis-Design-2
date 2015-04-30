@@ -1,0 +1,42 @@
+﻿@model Coupons.Models.Coupon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coupon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponMaker.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponMaker.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
