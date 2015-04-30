@@ -16,10 +16,28 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Business
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-           // var business = db.Business.Include(b => b.owner);
-            return View(db.Business.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CitySortParm = sortOrder == "City" ? "city_desc" : "City";
+            var businesses = from s in db.Business
+                           select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    businesses = businesses.OrderByDescending(s => s.name);
+                    break;
+                case "City":
+                    businesses = businesses.OrderBy(s => s.city);
+                    break;
+                case "city_desc":
+                    businesses = businesses.OrderByDescending(s => s.city);
+                    break;
+                default:
+                    businesses = businesses.OrderBy(s => s.name);
+                    break;
+            }
+            return View(businesses.ToList());
         }
 
         // GET: Business/Details/5
@@ -40,6 +58,7 @@ namespace Coupons.Controllers
         // GET: Business/Create
         public ActionResult Create()
         {
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID");
             ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName");
             return View();
         }
@@ -49,7 +68,7 @@ namespace Coupons.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name,ownerID")] Business business)
+        public ActionResult Create([Bind(Include = "ID,name,ownerID,categoryID,description,address,city,moneyEarned")] Business business)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +77,7 @@ namespace Coupons.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID", business.categoryID);
             ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName", business.ownerID);
             return View(business);
         }
@@ -74,6 +94,7 @@ namespace Coupons.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID", business.categoryID);
             ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName", business.ownerID);
             return View(business);
         }
@@ -83,7 +104,7 @@ namespace Coupons.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,ownerID")] Business business)
+        public ActionResult Edit([Bind(Include = "ID,name,ownerID,categoryID,description,address,city,moneyEarned")] Business business)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +112,7 @@ namespace Coupons.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID", business.categoryID);
             ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName", business.ownerID);
             return View(business);
         }
