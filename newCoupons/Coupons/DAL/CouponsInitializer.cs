@@ -68,8 +68,8 @@ namespace Coupons.DAL
 
             var CouponMaker = new List<CouponMaker>
             {
-            new CouponMaker{ID=1,name="mcCoupon",description="best price", originalPrice=50,couponPrice=25,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-04"),endDate=DateTime.Parse("2015-05-05"),quantity=0,maxQuantity=100,statusID="Active"},
-            new CouponMaker{ID=2,name="scCoupon",description="best price", originalPrice=40,couponPrice=10,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-05"),endDate=DateTime.Parse("2015-05-06"),quantity=0,maxQuantity=70,statusID="Active"}
+            new CouponMaker{ID=1,name="mcCoupon",description="best price", originalPrice=50,couponPrice=25,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-04"),endDate=DateTime.Parse("2015-05-05"),quantity=0,maxQuantity=100,StatusID="Active",BusinessID=1},
+            new CouponMaker{ID=2,name="scCoupon",description="best price", originalPrice=40,couponPrice=10,rating=2,numOfRaters=1,startDate=DateTime.Parse("2015-04-05"),endDate=DateTime.Parse("2015-05-06"),quantity=0,maxQuantity=70,StatusID="Active",BusinessID=1,}
 
             };
             CouponMaker.ForEach(s => context.CouponMaker.Add(s));

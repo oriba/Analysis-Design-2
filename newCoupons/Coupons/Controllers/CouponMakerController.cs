@@ -17,7 +17,7 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: CouponMaker
-        public ActionResult Index(string sortOrder, int? page, int? SelectedCategory)
+        public ActionResult Index(string sortOrder, int? page, int? SelectedCategory, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -31,10 +31,14 @@ namespace Coupons.Controllers
             int categoryID = SelectedCategory.GetValueOrDefault();
 
             IQueryable<CouponMaker> couponMakers = db.CouponMaker
-                .Where(c => !SelectedCategory.HasValue || c.business.categoryID == categoryID)
+                .Where(c => !SelectedCategory.HasValue || c.Business.categoryID == categoryID)
                 .OrderBy(d => d.name);
             var sql = couponMakers.ToString();
-            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                couponMakers = couponMakers.Where(s => s.Business.city.Contains(searchString)
+                                       || s.Business.address.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
