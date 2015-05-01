@@ -1,7 +1,30 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model IEnumerable<Coupons.ViewModels.PurchaseDateGroup>
 
-<p>Use this area to provide additional information.</p>
+@{
+    ViewBag.Title = "Cusotmer Body Statistics";
+}
+
+<h2>Cusotmer Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Customers
+        </th>
+        <th>
+            Age
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CustomerCount
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+        </tr>
+    }
+</table>

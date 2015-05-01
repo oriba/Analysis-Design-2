@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Coupons.DAL;
 using Coupons.Models;
+using PagedList;
 
 namespace Coupons.Controllers
 {
@@ -16,10 +17,39 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Coupon
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var coupon = db.Coupon.Include(c => c.CouponMaker).Include(c => c.Customer);
-            return View(coupon.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ActiveSortParm = String.IsNullOrEmpty(sortOrder) ? "active_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;           
+            var coupon = from s in db.Coupon
+                           select s;
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                coupon = coupon.Where(s => s.ID.ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "active_desc":
+                    coupon = coupon.OrderByDescending(s => s.isActive);
+                    break;
+                default:
+                    coupon = coupon.OrderBy(s => s.isActive);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(coupon.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Coupon/Details/5
@@ -40,8 +70,14 @@ namespace Coupons.Controllers
         // GET: Coupon/Create
         public ActionResult Create()
         {
+            //ViewBag.Coupon = new SelectList(db.Coupon, "ID", "ID");
             ViewBag.CouponMakerID = new SelectList(db.CouponMaker, "ID", "name");
             ViewBag.CustomerID = new SelectList(db.Customer, "ID", "firstName");
+            //ViewBag.CustomerID = new SelectList(db.Customer, "ID", "lastName");
+            //ViewBag.CustomerID = new SelectList(db.Customer, "ID", "ID");
+            //ViewBag.CouponMakerID = new SelectList(db.Customer, "ID", "endDate");
+            //ViewBag.CouponMakerID = new SelectList(db.Customer, "ID", "couponPrice");
+            //ViewBag.CouponMakerID = new SelectList(db.Customer, "ID", "isActive");
             return View();
         }
 
@@ -84,19 +120,31 @@ namespace Coupons.Controllers
         // POST: Coupon/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,isActive,CouponMakerID,CustomerID")] Coupon coupon)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(coupon).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.CouponMakerID = new SelectList(db.CouponMaker, "ID", "name", coupon.CouponMakerID);
-            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "firstName", coupon.CustomerID);
-            return View(coupon);
+            var couponsToUpdate = db.Coupon.Find(id);
+            if (TryUpdateModel(couponsToUpdate, "",
+               new string[] { "isActive" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(couponsToUpdate);
         }
 
         // GET: Coupon/Delete/5

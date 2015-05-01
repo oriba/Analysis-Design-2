@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Coupons.DAL;
 using Coupons.Models;
+using PagedList;
 
 namespace Coupons.Controllers
 {
@@ -16,9 +17,50 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Customer
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Customer.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "";
+            ViewBag.AgeSortParm = String.IsNullOrEmpty(sortOrder) ? "age_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var customers = from s in db.Customer
+                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(s => s.lastName.Contains(searchString)
+                                       || s.firstName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "lastName_desc":
+                    customers = customers.OrderByDescending(s => s.lastName);
+                    break;
+                case "firstName_desc":
+                    customers = customers.OrderBy(s => s.firstName);
+                    break;
+                case "age":
+                    customers = customers.OrderBy(s => s.age);
+                    break;
+                default:
+                    customers = customers.OrderBy(s => s.lastName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(customers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Customer/Details/5
@@ -49,7 +91,7 @@ namespace Coupons.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,firstName,lastName,email,phone,password,age")] Customer customer)
         {
-            try 
+            try
             {
                 if (ModelState.IsValid)
                 {
@@ -62,7 +104,7 @@ namespace Coupons.Controllers
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }   
+            }
             return View(customer);
         }
 
@@ -106,7 +148,7 @@ namespace Coupons.Controllers
             }
             var customerToUpdate = db.Customer.Find(id);
             if (TryUpdateModel(customerToUpdate, "",
-               new string[] { "firstName","lastName","email","phone","password","age" }))
+               new string[] { "firstName", "lastName", "email", "phone", "password", "age" }))
             {
                 try
                 {
@@ -124,7 +166,7 @@ namespace Coupons.Controllers
         }
 
         // GET: Customer/Delete/5
-        public ActionResult Delete(string id, bool? saveChangesError = false) 
+        public ActionResult Delete(string id, bool? saveChangesError = false)
         {
             if (id == null)
             {

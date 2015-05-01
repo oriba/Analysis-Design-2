@@ -11,7 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CouponMaker.name)
+            Cerial Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            Name
         </dt>
 
         <dd>
@@ -19,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.firstName)
+           First Name
         </dt>
 
         <dd>
@@ -27,7 +34,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.isActive)
+            Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.lastName)
+        </dd>
+
+        <dt>
+        Customer ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.ID)
+        </dd>
+
+        <dt>
+        End Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponMaker.endDate)
+        </dd>
+
+        <dt>
+            Coupon Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponMaker.couponPrice)
+        </dd>
+
+        <dt>
+            Active
         </dt>
 
         <dd>

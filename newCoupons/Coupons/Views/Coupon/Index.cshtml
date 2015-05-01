@@ -1,24 +1,50 @@
-﻿@model IEnumerable<Coupons.Models.Coupon>
+﻿@model PagedList.IPagedList<Coupons.Models.Coupon>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Coupon";
 }
 
-<h2>Index</h2>
+<h2>Ordered Coupons</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Coupon", FormMethod.Get))
+{
+    <p>
+        Find by a cerial code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CouponMaker.name)
+           Cerial Code
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.firstName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isActive)
+            Firsl Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Customer ID
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Coupon Price
+        </th>
+        <th>
+            @Html.ActionLink("Active", "Index", new { sortOrder = ViewBag.ActiveSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -26,10 +52,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CouponMaker.name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CouponMaker.endDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CouponMaker.couponPrice)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.isActive)
@@ -43,3 +84,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
