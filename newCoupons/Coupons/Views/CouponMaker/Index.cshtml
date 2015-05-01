@@ -11,10 +11,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "CouponMaker", FormMethod.Get))
+@using (Html.BeginForm()) 
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        Search By Category: @Html.DropDownList("SelectedCategory", "All")
+        <input type="submit" value="Search" />
+    </p>
+    <p>
+        Find by name: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -59,7 +63,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.description)
@@ -89,7 +93,7 @@
             @Html.DisplayFor(modelItem => item.maxQuantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.status)
+            @Html.DisplayFor(modelItem => item.Status.status)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

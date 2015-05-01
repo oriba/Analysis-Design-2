@@ -17,13 +17,12 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: CouponMaker
-        public ActionResult Index(string sortOrder, string searchString,string currentFilter, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, int? page, int? SelectedCategory, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
-
             if (searchString != null)
             {
                 page = 1;
@@ -34,19 +33,24 @@ namespace Coupons.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var couponMakers = from s in db.CouponMaker
-                               select s;
-            
+
+            var categories = db.Category.OrderBy(q => q.ID).ToList();
+            ViewBag.SelectedCategory = new SelectList(categories, "ID", "category", SelectedCategory);
+            int categoryID = SelectedCategory.GetValueOrDefault();
+
+            IQueryable<CouponMaker> couponMakers = db.CouponMaker
+                .Where(c => !SelectedCategory.HasValue || c.Business.categoryID == categoryID)
+                .OrderBy(d => d.Name);
+            var sql = couponMakers.ToString();
             if (!String.IsNullOrEmpty(searchString))
             {
-                couponMakers = couponMakers.Where(s => s.name.Contains(searchString)
-                                       || s.description.Contains(searchString));
+                couponMakers = couponMakers.Where(s => s.Business.city.Contains(searchString)
+                                       || s.Business.address.Contains(searchString));
             }
-
             switch (sortOrder)
             {
                 case "name_desc":
-                    couponMakers = couponMakers.OrderByDescending(s => s.name);
+                    couponMakers = couponMakers.OrderByDescending(s => s.Name);
                     break;
                 case "Date":
                     couponMakers = couponMakers.OrderBy(s => s.startDate);
@@ -61,7 +65,7 @@ namespace Coupons.Controllers
                     couponMakers = couponMakers.OrderByDescending(s => s.couponPrice);
                     break;
                 default:
-                    couponMakers = couponMakers.OrderBy(s => s.name);
+                    couponMakers = couponMakers.OrderBy(s => s.Name);
                     break;
             }
             int pageSize = 3;
@@ -97,13 +101,19 @@ namespace Coupons.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status")] CouponMaker couponMaker)
         {
-            if (ModelState.IsValid)
-            {
-                db.CouponMaker.Add(couponMaker);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            try {
+                if (ModelState.IsValid)
+                {
+                    db.CouponMaker.Add(couponMaker);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return View(couponMaker);
         }
 
@@ -119,23 +129,38 @@ namespace Coupons.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "status", couponMaker.StatusID);
             return View(couponMaker);
         }
 
         // POST: CouponMaker/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status")] CouponMaker couponMaker)
+        public ActionResult EditPost(int id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(couponMaker).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(couponMaker);
+            var couponMakerToUpdate = db.CouponMaker.Find(id);
+            if (TryUpdateModel(couponMakerToUpdate, "",
+               new string[] { "ID,Name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(couponMakerToUpdate);
         }
 
         // GET: CouponMaker/Delete/5
