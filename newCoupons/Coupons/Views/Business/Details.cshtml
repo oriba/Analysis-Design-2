@@ -11,19 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.category.ID)
+            @Html.DisplayNameFor(model => model.categoryID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.category.ID)
+            @Html.DisplayFor(model => model.categoryID)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.owner.firstName)
+            @Html.DisplayNameFor(model => model.Owner.firstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.owner.firstName)
+            @Html.DisplayFor(model => model.Owner.firstName)
         </dd>
 
         <dt>
@@ -65,8 +65,52 @@
         <dd>
             @Html.DisplayFor(model => model.moneyEarned)
         </dd>
-
-    </dl>
+    <h4>Coupon Makers</h4>
+        <hr />
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Maker ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Rating</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                    </tr>
+                    @foreach (var item in Model.couponMakers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.couponPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.rating)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.startDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.endDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.quantity)/@Html.DisplayFor(modelItem => item.maxQuantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusID)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

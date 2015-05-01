@@ -19,5 +19,7 @@ namespace Coupons.Models
 
         public virtual Owner Owner { get; set; }
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<CouponMaker> couponMakers { get; set; }
     }
 }

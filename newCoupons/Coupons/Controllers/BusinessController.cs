@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Coupons.DAL;
 using Coupons.Models;
+using PagedList;
 
 namespace Coupons.Controllers
 {
@@ -16,10 +17,22 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Business
-        public ActionResult Index(string sortOrder, int? SelectedCategory, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, int? SelectedCategory, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CitySortParm = sortOrder == "City" ? "city_desc" : "City";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var categories = db.Category.OrderBy(q => q.ID).ToList();
             ViewBag.SelectedCategory = new SelectList(categories, "ID", "category", SelectedCategory);
@@ -50,7 +63,9 @@ namespace Coupons.Controllers
                     break;
             }
 
-            return View(businesses.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(businesses.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Business/Details/5
@@ -83,15 +98,22 @@ namespace Coupons.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,name,ownerID,categoryID,description,address,city,moneyEarned")] Business business)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Business.Add(business);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Business.Add(business);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             ViewBag.categoryID = new SelectList(db.Category, "ID", "ID", business.categoryID);
-            ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName", business.ownerID);
+            ViewBag.ownerID = new SelectList(db.Owner, "ID", "ID", business.ownerID);
             return View(business);
         }
 
@@ -107,35 +129,48 @@ namespace Coupons.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID", business.categoryID);
-            ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName", business.ownerID);
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "category", business.categoryID);
+            ViewBag.ownerID = new SelectList(db.Owner, "ID", "ID", business.ownerID);
             return View(business);
         }
 
-        // POST: Business/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name,ownerID,categoryID,description,address,city,moneyEarned")] Business business)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(business).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID", business.categoryID);
-            ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName", business.ownerID);
-            return View(business);
-        }
-
-        // GET: Business/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var businessToUpdate = db.Business.Find(id);
+            if (TryUpdateModel(businessToUpdate, "",
+               new string[] { "ID","name","ownerID","categoryID","description","address","city","moneyEarned" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(businessToUpdate);
+        }
+
+        // GET: Business/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Business business = db.Business.Find(id);
             if (business == null)
