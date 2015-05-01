@@ -63,7 +63,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.description)
@@ -93,7 +93,7 @@
             @Html.DisplayFor(modelItem => item.maxQuantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @Html.DisplayFor(modelItem => item.Status.status)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
