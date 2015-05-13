@@ -44,7 +44,7 @@ namespace Coupons.Controllers
             var sql = couponMakers.ToString();
             if (!String.IsNullOrEmpty(searchString))
             {
-                couponMakers = couponMakers.Where(s => s.Business.city.Contains(searchString)
+                couponMakers = couponMakers.Where(s => s.Business.City.Contains(searchString)
                                        || s.Business.address.Contains(searchString));
             }
             switch (sortOrder)
@@ -91,6 +91,7 @@ namespace Coupons.Controllers
         // GET: CouponMaker/Create
         public ActionResult Create()
         {
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "ID");
             return View();
         }
 
@@ -146,7 +147,7 @@ namespace Coupons.Controllers
             }
             var couponMakerToUpdate = db.CouponMaker.Find(id);
             if (TryUpdateModel(couponMakerToUpdate, "",
-               new string[] { "ID,Name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status" }))
+               new string[] { "ID,Name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,statusID" }))
             {
                 try
                 {

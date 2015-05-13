@@ -44,7 +44,7 @@ namespace Coupons.Controllers
             var sql = businesses.ToString();
             if (!String.IsNullOrEmpty(searchString))
             {
-                businesses = businesses.Where(s => s.city.Contains(searchString)
+                businesses = businesses.Where(s => s.City.Contains(searchString)
                                        || s.address.Contains(searchString));
             }
             switch (sortOrder)
@@ -53,10 +53,10 @@ namespace Coupons.Controllers
                     businesses = businesses.OrderByDescending(s => s.name);
                     break;
                 case "City":
-                    businesses = businesses.OrderBy(s => s.city);
+                    businesses = businesses.OrderBy(s => s.City);
                     break;
                 case "city_desc":
-                    businesses = businesses.OrderByDescending(s => s.city);
+                    businesses = businesses.OrderByDescending(s => s.City);
                     break;
                 default:
                     businesses = businesses.OrderBy(s => s.name);
@@ -86,7 +86,7 @@ namespace Coupons.Controllers
         // GET: Business/Create
         public ActionResult Create()
         {
-            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID");
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "category");
             ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName");
             return View();
         }

@@ -14,7 +14,7 @@ namespace Coupons.Models
         public int categoryID { get; set; }
         public string description { get; set; }
         public string address { get; set; }
-        public string city { get; set; }
+        public string City { get; set; }
         public int moneyEarned { get; set; }
 
         public virtual Owner Owner { get; set; }
