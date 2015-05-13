@@ -12,7 +12,7 @@ using PagedList;
 
 namespace Coupons.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
         private CouponsContext db = new CouponsContext();
 
@@ -191,7 +191,7 @@ namespace Coupons.Controllers
         {
             try
             {
-                Customer customerToDelete = new Customer() { ID = id };
+                Customer customerToDelete = new Customer() { Id = id };
                 db.Entry(customerToDelete).State = EntityState.Deleted;
                 db.SaveChanges();
             }

@@ -12,7 +12,7 @@ using PagedList;
 
 namespace Coupons.Controllers
 {
-    public class CouponController : Controller
+    public class CouponController : BaseController
     {
         private CouponsContext db = new CouponsContext();
 

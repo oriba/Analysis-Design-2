@@ -26,7 +26,12 @@
                     <li>@Html.ActionLink("Coupons", "Index", "CouponMaker")</li>
                     <li>@Html.ActionLink("Businesses", "Index", "Business")</li>
                     <li>@Html.ActionLink("OrderedCoupons", "Index", "Coupon")</li>
-                    <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
+
+                    @if (ViewBag.Permissions.ListCustomers)
+                    {
+                        <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
+                    }
+                    
                     <li>@Html.ActionLink("Business owners", "Index", "Owner")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

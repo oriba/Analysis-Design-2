@@ -11,7 +11,7 @@ using Coupons.Models;
 
 namespace Coupons.Controllers
 {
-    public class OwnerController : Controller
+    public class OwnerController : BaseController
     {
         private CouponsContext db = new CouponsContext();
 

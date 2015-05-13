@@ -6,16 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Coupons.Models
 {
-    public class Owner
+    public class Owner : ApplicationUser
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string ID { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public string password { get; set; }
-
+    
         public virtual ICollection<Business> Businesses { get; set; }
+        
+        public override IPermissions Permissions
+        {
+            get { return OwnerPermissions.Default; }
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Coupons.DAL
 {
-    public class CouponsContext : DbContext
+    public class CouponsContext : ApplicationDbContext
     {
         public CouponsContext() : base("CouponsContext")
         {
@@ -24,6 +24,8 @@ namespace Coupons.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }

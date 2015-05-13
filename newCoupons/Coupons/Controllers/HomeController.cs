@@ -8,7 +8,7 @@ using Coupons.ViewModels;
 
 namespace Coupons.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private CouponsContext db = new CouponsContext();
 
