@@ -31,8 +31,10 @@
                     {
                         <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                     }
-                    
-                    <li>@Html.ActionLink("Business owners", "Index", "Owner")</li>
+                    @if (ViewBag.Permissions.ListOwners)
+                    { 
+                     <li>@Html.ActionLink("Business owners", "Index", "Owner")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
