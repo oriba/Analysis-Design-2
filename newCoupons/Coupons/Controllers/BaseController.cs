@@ -14,8 +14,7 @@ namespace Coupons.Controllers
 
         protected override ViewResult View(IView view, object model)
         {
-
-           
+         
             return base.View(view, model);
         }
 

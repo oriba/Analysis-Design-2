@@ -8,9 +8,7 @@
 
 <h2>Ordered Coupons</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br/><br /><br />    
 
 @using (Html.BeginForm("Index", "Coupon", FormMethod.Get))
 {
@@ -33,9 +31,6 @@
         </th>
         <th>
             Last Name
-        </th>
-        <th>
-            Customer ID
         </th>
         <th>
             End Date
@@ -64,9 +59,6 @@
             @Html.DisplayFor(modelItem => item.Customer.lastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer.ID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.CouponMaker.endDate)
         </td>
         <td>
@@ -76,7 +68,7 @@
             @Html.DisplayFor(modelItem => item.isActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Approve Coupon", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
