@@ -91,6 +91,7 @@ namespace Coupons.Controllers
         // GET: CouponMaker/Create
         public ActionResult Create()
         {
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "status");
             return View();
         }
 
@@ -146,7 +147,7 @@ namespace Coupons.Controllers
             }
             var couponMakerToUpdate = db.CouponMaker.Find(id);
             if (TryUpdateModel(couponMakerToUpdate, "",
-               new string[] { "ID,Name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status" }))
+               new string[] { "ID,Name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,statusID" }))
             {
                 try
                 {

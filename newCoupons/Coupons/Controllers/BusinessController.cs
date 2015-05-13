@@ -86,7 +86,7 @@ namespace Coupons.Controllers
         // GET: Business/Create
         public ActionResult Create()
         {
-            ViewBag.categoryID = new SelectList(db.Category, "ID", "ID");
+            ViewBag.categoryID = new SelectList(db.Category, "ID", "category");
             ViewBag.ownerID = new SelectList(db.Owner, "ID", "firstName");
             return View();
         }
