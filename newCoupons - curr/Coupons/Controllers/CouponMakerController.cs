@@ -91,6 +91,7 @@ namespace Coupons.Controllers
         // GET: CouponMaker/Create
         public ActionResult Create()
         {
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "ID");
             return View();
         }
 
