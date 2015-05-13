@@ -23,7 +23,7 @@ namespace Coupons.Controllers
             ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
             ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "";
             ViewBag.AgeSortParm = String.IsNullOrEmpty(sortOrder) ? "age_desc" : "";
-
+          
             if (searchString != null)
             {
                 page = 1;

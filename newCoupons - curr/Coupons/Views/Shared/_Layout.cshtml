@@ -23,18 +23,17 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <!--<li>Html.ActionLink("Details", "Details", "Customer")</li>-->
+
                     <li>@Html.ActionLink("Coupons", "Index", "CouponMaker")</li>
                     <li>@Html.ActionLink("Businesses", "Index", "Business")</li>
                     <li>@Html.ActionLink("OrderedCoupons", "Index", "Coupon")</li>
 
-                    @if (ViewBag.Permissions.ListCustomers)
-                    {
+               <!--if (ViewBag.Permissions.ListCustomers)--> 
                         <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
-                    }
-                    @if (ViewBag.Permissions.ListOwners)
-                    { 
+                    <!--- if (ViewBag.Permissions.ListOwners)--->   
+                   
                      <li>@Html.ActionLink("Business owners", "Index", "Owner")</li>
-                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
