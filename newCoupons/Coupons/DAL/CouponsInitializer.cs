@@ -9,7 +9,7 @@ using Microsoft.Owin.Security;
 
 namespace Coupons.DAL
 {
-    public class CouponsInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<CouponsContext>
+    public class CouponsInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<CouponsContext>//DropCreateDatabaseAlways<CouponsContext>
     {
         protected override void Seed(CouponsContext context)
         {
@@ -75,7 +75,7 @@ namespace Coupons.DAL
             
             var Business = new List<Business>
             {
-            new Business{ID=1,name="mcDonalds",Owner=owner,categoryID=1,description="hamburgers", address="rager 20 Beer-sheva",city="Beer-Sheva",moneyEarned=100}
+            new Business{ID=1,name="mcDonalds",Owner=owner,categoryID=1,description="hamburgers", address="rager 20 Beer-sheva",City="Beer-Sheva",moneyEarned=100}
             };
             Business.ForEach(s => context.Business.Add(s));
             context.SaveChanges();
