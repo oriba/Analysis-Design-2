@@ -19,5 +19,9 @@ namespace Coupons.Models
             get { return CustomerPermissions.Default; }
         }
 
+        public string customersID()
+        {
+            return Id;
+        } 
     }
 }

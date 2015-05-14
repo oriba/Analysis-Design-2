@@ -91,6 +91,7 @@ namespace Coupons.Controllers
         // GET: CouponMaker/Create
         public ActionResult Create()
         {
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "ID");
             return View();
         }
 
@@ -99,7 +100,7 @@ namespace Coupons.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status")] CouponMaker couponMaker)
+        public ActionResult Create([Bind(Include = "ID,name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,statusID")] CouponMaker couponMaker)
         {
             try {
                 if (ModelState.IsValid)
@@ -140,7 +141,7 @@ namespace Coupons.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int id)
         {
-            if (id == null)
+            if (id == 0) //null
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

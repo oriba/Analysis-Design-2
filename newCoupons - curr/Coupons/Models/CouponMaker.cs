@@ -19,7 +19,7 @@ namespace Coupons.Models
         public DateTime endDate { get; set; }
         public int quantity { get; set; }
         public int maxQuantity { get; set; }
-        public string StatusID { get; set; }
+        public int StatusID { get; set; }
         public int BusinessID { get; set; }
         
         public virtual Business Business { get; set; }
