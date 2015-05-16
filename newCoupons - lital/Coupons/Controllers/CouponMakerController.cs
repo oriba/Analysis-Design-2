@@ -126,7 +126,7 @@ namespace Coupons.Controllers
         public ActionResult Order()
         {
             ViewBag.CouponMakerID = new SelectList(db.CouponMaker, "ID", "name");
-            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "firstName");
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "UserName");
             return View();
         }
 
@@ -145,7 +145,7 @@ namespace Coupons.Controllers
             }
 
             ViewBag.CouponMakerID = new SelectList(db.CouponMaker, "ID", "name", coupon.CouponMakerID);
-            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "firstName", coupon.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "UserName", coupon.CustomerID);
             return View(coupon);
         }
 
