@@ -17,6 +17,7 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Coupon
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, string nameSearch)
         {
             ViewBag.CurrentSort = sortOrder;
