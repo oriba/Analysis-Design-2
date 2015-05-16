@@ -91,6 +91,9 @@ namespace Coupons.Controllers
         // GET: CouponMaker/Create
         public ActionResult Create()
         {
+            ViewBag.StatusID = new SelectList(db.Status, "status", "status");
+            ViewBag.BusinessID = new SelectList(db.Business, "ID", "name");
+
             return View();
         }
 
@@ -99,7 +102,7 @@ namespace Coupons.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,status")] CouponMaker couponMaker)
+        public ActionResult Create([Bind(Include = "ID,name,description,originalPrice,couponPrice,rating,numOfRaters,startDate,endDate,quantity,maxQuantity,StatusID,BusinessID")] CouponMaker couponMaker)
         {
             try {
                 if (ModelState.IsValid)
@@ -114,7 +117,36 @@ namespace Coupons.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+            ViewBag.StatusID = new SelectList(db.Status, "status", "status");
+            ViewBag.BusinessID = new SelectList(db.Business, "ID", "name");
             return View(couponMaker);
+        }
+
+        // GET: CouponMaker/Create
+        public ActionResult Order()
+        {
+            ViewBag.CouponMakerID = new SelectList(db.CouponMaker, "ID", "name");
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "firstName");
+            return View();
+        }
+
+        // POST: CouponMaker/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Order([Bind(Include = "ID,isActive,CouponMakerID,CustomerID")] Coupon coupon)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Coupon.Add(coupon);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CouponMakerID = new SelectList(db.CouponMaker, "ID", "name", coupon.CouponMakerID);
+            ViewBag.CustomerID = new SelectList(db.Customer, "ID", "firstName", coupon.CustomerID);
+            return View(coupon);
         }
 
         // GET: CouponMaker/Edit/5
