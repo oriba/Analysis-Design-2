@@ -156,33 +156,13 @@ namespace Coupons.Controllers
                // var user = new Customer { UserName = model.Email, Email = model.Email };
 
                 
-                if (@ViewBag.Permissions.ListCustomers) //if owner
-                {
-                    var user = new Owner() { UserName = model.Email, firstName = model.FirstName, lastName = model.LastName, Email = model.Email, PhoneNumber = model.PhoneNumber, PhoneNumberConfirmed = true };
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                        // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                        return RedirectToAction("Index", "Home");
-                    }
-                    AddErrors(result);
-                }
-                else
-                {
                     var user = new Customer() { UserName = model.Email, firstName = model.FirstName, lastName = model.LastName, Email = model.Email, age = model.Age, PhoneNumber = model.PhoneNumber, PhoneNumberConfirmed = true };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    AddErrors(result);
-                }           
+                    AddErrors(result);        
             }
             // If we got this far, something failed, redisplay form
             return View(model);
