@@ -19,5 +19,15 @@ namespace Coupons.Models
             get { return CustomerPermissions.Default; }
         }
 
+        public string EncryptPass(string prevPass)
+        {
+            string ans = "";
+            foreach (char c in ans)
+            {
+                ans = ans + ((char)((c + 10) % 200));
+            }
+            return (ans);
+        }
+
     }
 }
