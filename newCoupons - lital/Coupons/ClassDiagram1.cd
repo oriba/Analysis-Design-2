@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Coupons.BundleConfig" Collapsed="true">
+    <Position X="15.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.FilterConfig" Collapsed="true">
+    <Position X="13.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.EmailService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coupons.SmsService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coupons.ApplicationUserManager" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.ApplicationSignInManager" Collapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.RouteConfig" Collapsed="true">
+    <Position X="10.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Startup" Collapsed="true">
+    <Position X="17.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\Startup.Auth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.MvcApplication" Collapsed="true">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.AccountController" Collapsed="true">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgABAChACAAAAAAAAFgEgAABAABMKIAAAMRAAQgAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.BaseController" Collapsed="true">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.BusinessController" Collapsed="true">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\BusinessController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.CouponController" Collapsed="true">
+    <Position X="10.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CouponController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.CouponMakerController" Collapsed="true">
+    <Position X="12.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACARAACAAAAAAAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CouponMakerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.CustomerController" Collapsed="true">
+    <Position X="14.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAAAAAAAAAAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CustomerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.HomeController" Collapsed="true">
+    <Position X="17" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.ManageController" Collapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAQiAAgAAAAEFhAAAAAAEAIMIAAEEEgAAkAAA=</HashCode>
+      <FileName>Controllers\ManageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Controllers.OwnerController" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAEAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\OwnerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.DAL.CouponsContext" Collapsed="true">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAACEAEAAAAIAAAAAAQAQEAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>DAL\CouponsContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.DAL.CouponsInitializer" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAL\CouponsInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ExternalLoginConfirmationViewModel" Collapsed="true">
+    <Position X="7" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ExternalLoginListViewModel" Collapsed="true">
+    <Position X="10.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.SendCodeViewModel" Collapsed="true">
+    <Position X="12" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.VerifyCodeViewModel" Collapsed="true">
+    <Position X="7.75" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAEAAAAAAAgAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ForgotViewModel" Collapsed="true">
+    <Position X="17.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.LoginViewModel" Collapsed="true">
+    <Position X="10.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.RegisterViewModel" Collapsed="true">
+    <Position X="15.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAEAAQAAAAAAAAAACAAAAAAAAIAg=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ResetPasswordViewModel" Collapsed="true">
+    <Position X="7.5" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAgAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ForgotPasswordViewModel" Collapsed="true">
+    <Position X="15.5" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Admin" Collapsed="true">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Business" Collapsed="true">
+    <Position X="17.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAggAAIBAACAAAAAIEAAAAAAAAAAQICAA=</HashCode>
+      <FileName>Models\Business.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Category" Collapsed="true">
+    <Position X="19" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Coupon" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAgAAAAAAAARAQEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Coupon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.CouponMaker" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAEAEAAgBAAICAAAAYIAQAAAACAAAAAQEAAAAA=</HashCode>
+      <FileName>Models\CouponMaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Customer" Collapsed="true">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEQAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ApplicationUser" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACABAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ApplicationDbContext" Collapsed="true">
+    <Position X="0.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.CustomerPermissions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAAAAggAAgAABAIAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IPermissions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coupons.Models.OwnerPermissions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAAAAggAAgAABAIAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IPermissions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coupons.Models.AdminPermissions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAAAAggAAgAABAIAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IPermissions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coupons.Models.GuestPermissions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAAAAggAAgAABAIAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IPermissions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coupons.Models.IndexViewModel" Collapsed="true">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAQAAAAAAAAAAAAAAQAAAEAEA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ManageLoginsViewModel" Collapsed="true">
+    <Position X="14.25" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.FactorViewModel" Collapsed="true">
+    <Position X="12" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.SetPasswordViewModel" Collapsed="true">
+    <Position X="12" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ChangePasswordViewModel" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.AddPhoneNumberViewModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.VerifyPhoneNumberViewModel" Collapsed="true">
+    <Position X="10.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.ConfigureTwoFactorViewModel" Collapsed="true">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Owner" Collapsed="true">
+    <Position X="3" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\Owner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.Models.Status" Collapsed="true">
+    <Position X="19" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coupons.ViewModels.PurchaseDateGroup" Collapsed="true">
+    <Position X="17" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\PurchaseDateGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Coupons.Models.IPermissions" Collapsed="true">
+    <Position X="3.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAAAAggAAgAABAAAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IPermissions.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Coupons.Models.CategoryEnum" Collapsed="true">
+    <Position X="3.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAAAAAAAQAAAAQAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\CategoryEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Coupons.Models.StatusEnum" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAACAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StatusEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
