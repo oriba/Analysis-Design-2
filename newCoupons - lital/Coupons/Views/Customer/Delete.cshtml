@@ -50,6 +50,28 @@
         <dd>
             @Html.DisplayFor(model => model.age)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Coupons)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Coupon ID</th>
+                    <th>Name</th>
+                </tr>
+                @foreach (var item in Model.Coupons)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CouponMaker.Name)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
 
     </dl>
 
