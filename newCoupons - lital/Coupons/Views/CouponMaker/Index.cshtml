@@ -18,7 +18,7 @@
         <input type="submit" value="Search" />
     </p>
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find By Location: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -27,6 +27,12 @@
     <tr>
         <th>
             @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Business
+        </th>
+        <th>
+            Location
         </th>
         <th>
             Description
@@ -66,6 +72,12 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Business.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Business.city)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
@@ -95,12 +107,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.Status.status)
         </td>
+        @if (ViewBag.Permissions.EditDeleteCouponMaker)
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                @Html.ActionLink("Order", "Order", new { id = item.ID })
+            </td>
+        }
+       @if (!ViewBag.Permissions.EditDeleteCouponMaker)
+       {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
             @Html.ActionLink("Order", "Order", new { id = item.ID })
         </td>
+       }
+        
     </tr>
 }
 

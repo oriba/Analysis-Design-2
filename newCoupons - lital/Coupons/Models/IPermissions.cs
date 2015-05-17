@@ -22,6 +22,8 @@ namespace Coupons.Models
 
         bool EditDeleteCoupon { get; }
 
+        bool EditDeleteCouponMaker { get; }
+
     }
 
     public class CustomerPermissions : IPermissions
@@ -64,6 +66,11 @@ namespace Coupons.Models
         }
 
         public bool EditDeleteCoupon
+        {
+            get { return false; }
+        }
+
+        public bool EditDeleteCouponMaker
         {
             get { return false; }
         }
@@ -113,6 +120,11 @@ namespace Coupons.Models
         {
             get { return false; }
         }
+
+        public bool EditDeleteCouponMaker
+        {
+            get { return false; }
+        }
     }
 
     public class AdminPermissions : IPermissions
@@ -158,6 +170,11 @@ namespace Coupons.Models
         {
             get { return true; }
         }
+
+        public bool EditDeleteCouponMaker
+        {
+            get { return true; }
+        }
     }
 
     public class GuestPermissions : IPermissions
@@ -200,6 +217,11 @@ namespace Coupons.Models
         }
 
         public bool EditDeleteCoupon
+        {
+            get { return false; }
+        }
+
+        public bool EditDeleteCouponMaker
         {
             get { return false; }
         }
