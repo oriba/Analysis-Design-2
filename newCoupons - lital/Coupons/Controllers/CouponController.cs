@@ -17,7 +17,7 @@ namespace Coupons.Controllers
         private CouponsContext db = new CouponsContext();
 
         // GET: Coupon
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page, string nameSearch)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.ActiveSortParm = String.IsNullOrEmpty(sortOrder) ? "active_desc" : "";
@@ -38,6 +38,11 @@ namespace Coupons.Controllers
             {
                 coupon = coupon.Where(s => s.ID.ToString().Contains(searchString));
             }
+
+            if (!String.IsNullOrEmpty(nameSearch))////////////////////////////////////
+            {
+                coupon = coupon.Where(s => s.Customer.UserName.Contains(nameSearch));
+            }///////////////////////////////////////////////////////
             switch (sortOrder)
             {
                 case "active_desc":
