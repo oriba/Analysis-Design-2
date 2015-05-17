@@ -175,7 +175,7 @@ namespace Coupons.Controllers
             }
             if (saveChangesError.GetValueOrDefault())
             {
-                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.\nNote that this customer may have coupons in the system. Delete them first ";
             }
             Customer customer = db.Customer.Find(id);
             if (customer == null)
